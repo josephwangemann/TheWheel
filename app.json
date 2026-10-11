@@ -36,7 +36,8 @@
           "backgroundColor": "#121212"
         }
       ],
-      "expo-font"
+      "expo-font",
+      "expo-build-properties"
     ],
     "assetBundlePatterns": [
       "**/*"

@@ -1,7 +1,7 @@
 PODS:
-  - EXConstants (57.0.19):
+  - EXConstants (57.0.21):
     - ExpoModulesCore
-  - Expo (57.0.24):
+  - Expo (57.0.27):
     - ExpoModulesCore
     - ExpoModulesJSI
     - hermes-engine
@@ -27,7 +27,7 @@ PODS:
     - ReactCommon/turbomodule/core
     - ReactNativeDependencies
     - Yoga
-  - ExpoAsset (57.0.18):
+  - ExpoAsset (57.0.19):
     - ExpoModulesCore
   - ExpoDomWebView (57.0.1):
     - ExpoModulesCore
@@ -39,7 +39,7 @@ PODS:
     - ExpoModulesCore
   - ExpoLogBox (57.0.4):
     - React-Core
-  - ExpoModulesCore (57.0.18):
+  - ExpoModulesCore (57.0.21):
     - ExpoModulesJSI
     - hermes-engine
     - RCTRequired
@@ -63,10 +63,10 @@ PODS:
     - ReactCommon/turbomodule/core
     - ReactNativeDependencies
     - Yoga
-  - ExpoModulesJSI (57.1.0):
+  - ExpoModulesJSI (57.1.1):
     - React-Core
     - ReactCommon
-  - ExpoModulesWorklets (57.0.18):
+  - ExpoModulesWorklets (57.0.21):
     - ExpoModulesCore
     - ExpoModulesJSI
   - ExpoSplashScreen (57.0.9):
@@ -2359,17 +2359,17 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
 SPEC CHECKSUMS:
-  EXConstants: 9ae13e3b5d0f222a979eed6d14197339739b123d
-  Expo: f50bc6de47f408548a7ad81c08253deb409ff37a
-  ExpoAsset: b210270fcd528dc6b219c1ba63093bf9e9f4b1e9
+  EXConstants: 701b9564e7b427dbe39cd3a78b0906c7d430b9c4
+  Expo: 95c7f6981287cff9ed02d91c21ad60859e01e943
+  ExpoAsset: dde4ad9096a841b00e4e284c98fd70ed9fb6b4dc
   ExpoDomWebView: fa9c72fe29dd4649197a7ecb07ddd870d55c4eda
   ExpoFileSystem: 980be7ecc921f6ba73cdf986ff66e1ecd57b8ef7
   ExpoFont: baf9e5d472c5dd59ca6b3221677f726499452a0e
   ExpoKeepAwake: b9ebf2ba14c42a2b5782adab42a2168a689bfd07
   ExpoLogBox: c5a2405d8f6bfbb52c2ef3336b511825479a2a43
-  ExpoModulesCore: e046991ceb45aabc3d99a2f436630c01320e1e5e
-  ExpoModulesJSI: c8dd52f25cdeaeadf733197eefd279dd22e63f17
-  ExpoModulesWorklets: 37830cb23e90c87218523f942c3e10eaac9c9322
+  ExpoModulesCore: 96963114263d52e12df151c107cd5b8f77382ca3
+  ExpoModulesJSI: 143a07881a80bebb3578ca0797e5872802aa6487
+  ExpoModulesWorklets: e2164ac09469aaf3d44dd3927649acc833ac7349
   ExpoSplashScreen: 414f03c750fd71772a44e4e22bcdad58dbb5b1b8
   ExpoSystemUI: 19fb0b6ed8a94d32bc15294161b5245083304e90
   FBLazyVector: 2138c6c2ab66c31bf5754dc18097fbc498a49c7f
