@@ -1,12 +1,10 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useEffect } from "react";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { TamaguiProvider, Theme } from "tamagui";
 import { NavigationContainer } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
-// Per-weight subpaths on purpose: importing the package root re-exports all 50
-// weight/italic variants and Metro bundles every one (~9.4MB instead of ~1.3MB).
 import { Syncopate_400Regular } from "@expo-google-fonts/syncopate/400Regular";
 import { Syncopate_700Bold } from "@expo-google-fonts/syncopate/700Bold";
 import { Inter_400Regular } from "@expo-google-fonts/inter/400Regular";
@@ -20,10 +18,8 @@ import { setupPlayer, playbackService } from "./src/services/trackPlayer";
 
 TrackPlayer.registerPlaybackService(() => playbackService);
 
-// Hold the splash until the typefaces are ready, so nothing renders in a
-// fallback face and then reflows.
-SplashScreen.preventAutoHideAsync().catch(() => {
-  /* already hidden */
+SplashScreen.preventAutoHideAsync().catch((err) => {
+  console.error("Splash screen prevention failed:", err);
 });
 
 const App = () => {
@@ -36,18 +32,15 @@ const App = () => {
     IBMPlexMono_400Regular,
   });
 
-  const onReady = useCallback(() => {
-    SplashScreen.hideAsync().catch(() => {
-      /* already hidden */
-    });
-  }, []);
-
   useEffect(() => {
-    // Don't strand the user on the splash if a font fails to decode.
-    if (fontsLoaded || fontError) {
-      onReady();
+    if (fontError) {
+      console.error("Font loading failed:", fontError);
     }
-  }, [fontsLoaded, fontError, onReady]);
+
+    if (fontsLoaded || fontError) {
+      SplashScreen.hide();
+    }
+  }, [fontsLoaded, fontError]);
 
   useEffect(() => {
     const setup = async () => {

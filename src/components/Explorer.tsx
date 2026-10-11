@@ -8,7 +8,7 @@ import React, {
   useState,
 } from "react";
 import { FlatList } from "react-native";
-import { useNavigation, useFocusEffect } from "@react-navigation/native";
+import { useFocusEffect } from "@react-navigation/native";
 import Touchable from "@components/Touchable";
 import {
   formatDate,
@@ -24,10 +24,10 @@ import { years } from "@services/utils";
 import { Ionicons } from "@expo/vector-icons";
 
 type ExplorerProps = {
-  goToShow: (show: Show | null, availableShowsOnSelectedDate: any) => void;
+  goToShow: (show: Show, availableShowsOnSelectedDate: Show[]) => void;
   setSelectedYear: (year: number) => void;
   selectedYear: number;
-  searchTerm: string | undefined;
+  searchTerm: string;
 };
 
 type TabPillProps = {
@@ -120,11 +120,8 @@ const Explorer: React.FC<ExplorerProps> = ({
   searchTerm,
 }) => {
   const showListRef = useRef<FlatList<Show>>(null);
-  const theme = useTheme();
   const [favoriteShows, setFavoriteShows] = useState<Show[]>([]);
   const [favoritesLoaded, setFavoritesLoaded] = useState(false);
-
-  const navigation = useNavigation();
 
   // Filtering + re-rendering the list is the expensive part, so let it lag a frame
   // behind the input rather than blocking each keystroke.

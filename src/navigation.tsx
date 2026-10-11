@@ -4,8 +4,9 @@ import Home from "@screens/Home";
 import ShowDetails from "@screens/ShowDetails";
 import { PlayerProvider } from "./context/PlayerContext";
 import Player from "@components/Player";
+import type { RootStackParamList } from "./navigationTypes";
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const Navigation = () => (
   <PlayerProvider>

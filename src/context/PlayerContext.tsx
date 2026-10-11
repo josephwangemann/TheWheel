@@ -96,7 +96,7 @@ const resumePosition = (saved: number | undefined, track?: Track) => {
   return saved;
 };
 
-export const PlayerProvider = ({ children }: { children: any }) => {
+export const PlayerProvider = ({ children }: { children: React.ReactNode }) => {
   const [show, setShow] = useState<Show | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [loadingTrack, setLoadingTrack] = useState<{
@@ -372,8 +372,9 @@ export const PlayerProvider = ({ children }: { children: any }) => {
         if (resumable) {
           await queueSaved(resumable);
         }
-      } catch {
-        // No player set up yet (cold start) — nothing to restore.
+      } catch (error) {
+        // Cold-start player reads can fail before setup completes.
+        console.warn("Could not restore playback:", error);
       } finally {
         suppressTrackWritesRef.current = false;
       }

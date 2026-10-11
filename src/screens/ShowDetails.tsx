@@ -16,6 +16,7 @@ import { prefetchItemLocation } from "@services/archiveUrl";
 import { Track, Show } from "../types";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { usePlayer } from "../context/PlayerContext";
+import type { ShowDetailsScreenProps } from "../navigationTypes";
 
 const formatShowSource = (src?: string) => {
   // One archive record has no identifier at all, which rendered a blank row in
@@ -44,16 +45,9 @@ const formatShowSource = (src?: string) => {
 const BACKDROP_Z = 5;
 const PICKER_Z = 10;
 
-type ShowDetailsProps = {
-  route: any;
-  navigation: any;
-};
-
-const ShowDetails: React.FC<ShowDetailsProps> = ({ route, navigation }) => {
-  const { show, availableShowsOnSelectedDate, onSelectTrack } = route.params;
-  // Comes from the player rather than a route param, which was never passed and
-  // left the spinner permanently unreachable.
-  const { loadingTrack } = usePlayer();
+const ShowDetails: React.FC<ShowDetailsScreenProps> = ({ route, navigation }) => {
+  const { show, availableShowsOnSelectedDate } = route.params;
+  const { loadingTrack, loadAudioAndPlay } = usePlayer();
   const insets = useSafeAreaInsets();
   const { height: windowHeight } = useWindowDimensions();
   const theme = useTheme();
@@ -69,18 +63,13 @@ const ShowDetails: React.FC<ShowDetailsProps> = ({ route, navigation }) => {
     setIsFavorited(isShowFavorited(show.date));
   }, [show]);
 
-  // Warm the data-node lookup for whatever a tap would play. The user reads this
-  // track list for seconds first, which is long enough for the lookup to land —
-  // so playback starts on the item's own node instead of waiting on it and
-  // falling back to the flaky redirect tier. Re-runs when the picker swaps source.
+  // Prefetch the selected recording's data node before playback.
   useEffect(() => {
     prefetchItemLocation((activeShow ?? show)?.showIdentifier);
   }, [activeShow, show]);
 
-  // A few identifiers appear on more than one archive record, which listed the
-  // same recording twice with identical labels — one of the pair sometimes being
-  // a stub with no track list. Keep one per identifier, preferring the one that
-  // actually has tracks.
+  // Deduplicate identifiers, preferring records with tracks and retaining
+  // unidentified records as separate entries.
   const selectableShows: Show[] = useMemo(() => {
     const shows: Show[] = availableShowsOnSelectedDate ?? [];
     const byIdentifier = new Map<string, Show>();
@@ -92,22 +81,16 @@ const ShowDetails: React.FC<ShowDetailsProps> = ({ route, navigation }) => {
       }
     });
     const deduped = Array.from(byIdentifier.values());
-    // A recording the player will refuse still rendered a complete, convincing
-    // track list here, where every row was a silent no-op. Don't offer one —
-    // unless it is all this date has, since an empty picker tells the user even
-    // less than a dead one.
+    // Offer playable recordings, falling back to all records if none can play.
     const playable = deduped.filter(isPlayableShow);
     return playable.length ? playable : deduped;
   }, [availableShowsOnSelectedDate]);
 
-  const doMultipleSourcesExist = useMemo(() => {
-    return selectableShows.length > 1;
-  }, [selectableShows]);
+  const doMultipleSourcesExist = selectableShows.length > 1;
 
   const handleTrackLoad = (trackIndex: number) => {
-    // Must be activeShow: the source picker swaps it, and the track list below
-    // renders from activeShow, so playing `show` would play a different source.
-    onSelectTrack(trackIndex, activeShow ?? show);
+    // Play the recording currently displayed by the picker.
+    return loadAudioAndPlay(activeShow ?? show, trackIndex);
   };
 
   const toggleFavorite = () => {

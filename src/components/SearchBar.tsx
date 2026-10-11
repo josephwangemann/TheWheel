@@ -4,7 +4,7 @@ import { Ionicons } from "@expo/vector-icons";
 import Touchable from "./Touchable";
 
 type SearchBarProps = {
-  searchTerm: string | undefined;
+  searchTerm: string;
   setSearchTerm: (value: string) => void;
 };
 
