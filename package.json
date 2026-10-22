@@ -15,29 +15,29 @@
     "@expo/vector-icons": "^15.0.2",
     "@react-navigation/native": "^7.3.17",
     "@react-navigation/native-stack": "^7.18.9",
-    "expo": "~57.0.27",
-    "expo-build-properties": "~57.0.22",
-    "expo-font": "~57.0.1",
-    "expo-splash-screen": "~57.0.7",
-    "expo-status-bar": "~57.0.1",
-    "expo-system-ui": "~57.0.2",
-    "react": "19.2.3",
-    "react-native": "0.86.3",
+    "expo": "~58.0.17",
+    "expo-build-properties": "~58.0.11",
+    "expo-font": "~58.0.9",
+    "expo-splash-screen": "~58.0.11",
+    "expo-status-bar": "~58.0.4",
+    "expo-system-ui": "~58.0.6",
+    "react": "19.3.0",
+    "react-native": "0.88.0",
     "react-native-mmkv": "^4.3.2",
     "react-native-nitro-modules": "^0.37.0",
-    "react-native-safe-area-context": "~5.7.0",
-    "react-native-screens": "~4.26.0",
+    "react-native-safe-area-context": "~5.10.1",
+    "react-native-screens": "~4.30.0",
     "react-native-track-player": "^4.1.2",
     "tamagui": "1.144.4"
   },
   "devDependencies": {
-    "@types/react": "~19.2.2",
+    "@types/react": "~19.3.0",
     "babel-plugin-module-resolver": "^5.0.2",
     "patch-package": "^8.0.1",
     "typescript": "~6.0.3"
   },
   "overrides": {
-    "react": "19.2.3",
-    "react-dom": "19.2.3"
+    "react": "19.3.0",
+    "react-dom": "19.3.0"
   }
 }

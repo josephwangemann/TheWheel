@@ -334,8 +334,8 @@ const Explorer: React.FC<ExplorerProps> = ({
           renderItem={({ item }) => (
             <ShowRow show={item} onPress={handleShowSelect} />
           )}
-          contentContainerStyle={{ paddingBottom: 300 }}
           keyboardShouldPersistTaps="handled"
+          keyboardDismissMode="on-drag"
           initialNumToRender={12}
           windowSize={7}
           removeClippedSubviews
@@ -358,8 +358,8 @@ const Explorer: React.FC<ExplorerProps> = ({
             renderItem={({ item }) => (
               <ShowRow show={item} onPress={handleFavoriteShowSelect} />
             )}
-            contentContainerStyle={{ paddingBottom: 300 }}
             keyboardShouldPersistTaps="handled"
+            keyboardDismissMode="on-drag"
             ListEmptyComponent={
               <Text color="$text" fs="$3">
                 {`No favorites match "${deferredSearchTerm?.trim()}"`}
@@ -378,8 +378,8 @@ const Explorer: React.FC<ExplorerProps> = ({
             renderItem={({ item }) => (
               <ShowRow show={item} onPress={handleFavoriteShowSelect} />
             )}
-            contentContainerStyle={{ paddingBottom: 300 }}
             keyboardShouldPersistTaps="handled"
+            keyboardDismissMode="on-drag"
             ListEmptyComponent={
               <Text color="$text" fs="$3">
                 {deferredSearchTerm?.trim()
