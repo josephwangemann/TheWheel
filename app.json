@@ -19,7 +19,7 @@
       "versionCode": 1,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#121212"
+        "backgroundColor": "#0D0E18"
       }
     },
     "web": {
@@ -31,9 +31,12 @@
         "expo-splash-screen",
         {
           "image": "./assets/splash-icon.png",
-          "imageWidth": 200,
+          "imageWidth": 320,
           "resizeMode": "contain",
-          "backgroundColor": "#121212"
+          "backgroundColor": "#0D0E18",
+          "android": {
+            "imageWidth": 192
+          }
         }
       ],
       "expo-font",
