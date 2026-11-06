@@ -35,7 +35,7 @@
           "resizeMode": "contain",
           "backgroundColor": "#0D0E18",
           "android": {
-            "imageWidth": 192
+            "imageWidth": 176
           }
         }
       ],
